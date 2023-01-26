@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroidERestaurant</string>
+
+    <string-array name="plats">
+        <item>Soupe</item>
+        <item>Hamburger </item>
+        <item>Tacos saucisse</item>
+    </string-array>
+</resources>
