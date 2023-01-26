@@ -56,25 +56,23 @@ class DetailsActivity : AppCompatActivity() {
 
         //Ajouter et supprimer un article
         val test = findViewById<TextView>(R.id.textView3)
+        val Price = findViewById<TextView>(R.id.prixtot)
         val buttonIncrement = findViewById<Button>(R.id.buttonplus)
         buttonIncrement.setOnClickListener {
             val currentValue = test.text.toString().toInt()
+            val currentValue2 = Price.text.toString().toInt()
             test.text = (currentValue + 1).toString()
+            Price.text = (currentValue2 + 10).toString()
         }
 
         val buttonDecrement = findViewById<Button>(R.id.buttonmoins)
         buttonDecrement.setOnClickListener {
             val currentValue = test.text.toString().toInt()
+            val currentValue2 = Price.text.toString().toInt()
             test.text = (currentValue - 1).toString()
+            Price.text = (currentValue2 - 10).toString()
         }
 
-        //val test2 = findViewById<TextView>(R.id.prixtot)
-        val price = item.prices[0]
-        val prixtotal = findViewById<Button>(R.id.buttonplus)
-        prixtotal.setOnClickListener {
-            //val currentValue = test2.text.toString().toInt()
-            test.text = (price).toString()
-        }
 
         //verification des bouton
         /*binding.buttonplus.setOnClickListener {
