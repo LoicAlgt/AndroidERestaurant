@@ -63,9 +63,9 @@
 
     <Button
         android:id="@+id/buttonmoins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Moins"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/boutonmoins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
@@ -75,9 +75,9 @@
 
     <Button
         android:id="@+id/buttonplus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/boutonplus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.829"
