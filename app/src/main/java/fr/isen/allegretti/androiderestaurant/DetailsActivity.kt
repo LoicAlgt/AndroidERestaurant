@@ -1,14 +1,18 @@
 package fr.isen.allegretti.androiderestaurant
 
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import fr.isen.allegretti.androiderestaurant.databinding.ActivityDetailsBinding
 import fr.isen.allegretti.androiderestaurant.model.Items
@@ -43,7 +47,7 @@ class DetailsActivity : AppCompatActivity() {
         actionBar?.title = spannableTitle
 
 
-        val textView = findViewById<TextView>(R.id.DetailsNamePlat)
+        val textView = findViewById<TextView>(R.id.nomplat)
         val text = name
         textView.text = text
 
@@ -54,24 +58,52 @@ class DetailsActivity : AppCompatActivity() {
             }
         }
 
-        //Ajouter et supprimer un article
-        val test = findViewById<TextView>(R.id.textView3)
-        val Price = findViewById<TextView>(R.id.prixtot)
-        val buttonIncrement = findViewById<Button>(R.id.buttonplus)
-        buttonIncrement.setOnClickListener {
-            val currentValue = test.text.toString().toInt()
-            val currentValue2 = Price.text.toString().toInt()
-            test.text = (currentValue + 1).toString()
-            Price.text = (currentValue2 + 10).toString()
+        //ajouter dans le panier
+        val myButton = findViewById<Button>(R.id.buttonplus)
+        myButton.setOnClickListener {
+            val basket = mapOf("item1" to 1, "item2" to 2)
+            val basketJson = Gson().toJson(basket)
+            val fileOutputStream = openFileOutput("basket.json", Context.MODE_PRIVATE)
+            fileOutputStream.write(basketJson.toByteArray())
+            fileOutputStream.close()
+            val view = findViewById<View>(android.R.id.content)
+            Snackbar.make(view, "Les informations ont été ajoutées au panier", Snackbar.LENGTH_SHORT).show()
         }
 
-        val buttonDecrement = findViewById<Button>(R.id.buttonmoins)
-        buttonDecrement.setOnClickListener {
-            val currentValue = test.text.toString().toInt()
-            val currentValue2 = Price.text.toString().toInt()
-            test.text = (currentValue - 1).toString()
-            Price.text = (currentValue2 - 10).toString()
+        //Ajouter et supprimer un article
+        val prixproduit = item.prices
+        val priceString = java.lang.StringBuilder()
+        val priceunique = item.prices[0].price?.toDouble()
+        var somme = 0
+        binding.buttonplus.setOnClickListener {
+            somme++
+            binding.textView3.text =
+                Editable.Factory.getInstance().newEditable(somme.toString())
+
+            if (item.prices.isNotEmpty()) {
+                prixproduit.forEach { prix ->
+                    priceString.append(prix.price)
+                }
+                val number = somme * priceunique!!
+                binding.prixtot.text = number.toString()
+            }
         }
+        val myTextView = findViewById<TextView>(R.id.prixtot)
+        val text2 = myTextView.text.toString()
+        binding.buttonmoins.setOnClickListener {
+            if (somme <= 0) {
+                Toast.makeText(applicationContext, "Vous avez déjà 0 article", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                somme--
+                binding.textView3.setText(
+                    Editable.Factory.getInstance().newEditable(somme.toString())
+                )
+                val number = somme * priceunique!!
+                binding.prixtot.text = number.toString()
+            }
+        }
+
 
 
         //verification des bouton
@@ -95,7 +127,7 @@ class DetailsActivity : AppCompatActivity() {
         ingredients.forEach{ ingredients -> ingredientsString.append(ingredients.nameFr)
         ingredientsString.append("\n")
         }
-    binding.detailsPricePlat.text = ingredientsString
+    binding.ingredient.text = ingredientsString
     }
 
 

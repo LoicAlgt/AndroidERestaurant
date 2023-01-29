@@ -79,7 +79,7 @@ private fun handleAPIData(data: String) {
         val gson = builder.create()
         val values = "http://test.api.catering.bluecodegames.com/menu"
         println(gson.toJson(values))
-        println("Salut")
+        println("Yo")
     }
 
 

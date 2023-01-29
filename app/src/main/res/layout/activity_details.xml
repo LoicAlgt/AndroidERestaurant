@@ -8,7 +8,7 @@
     tools:context=".DetailsActivity">
 
     <TextView
-        android:id="@+id/DetailsNamePlat"
+        android:id="@+id/nomplat"
         android:layout_width="250dp"
         android:layout_height="30dp"
         android:textColor="#000000"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.098" />
 
     <TextView
-        android:id="@+id/detailsPricePlat"
+        android:id="@+id/ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="textview"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DetailsNamePlat"
+        app:layout_constraintTop_toBottomOf="@+id/nomplat"
         app:layout_constraintVertical_bias="0.144" />
 
     <ImageView
@@ -96,5 +96,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detailsImagePlat"
         app:layout_constraintVertical_bias="0.958" />
+
+    <TextView
+        android:id="@+id/euro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="€"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.573"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.957" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

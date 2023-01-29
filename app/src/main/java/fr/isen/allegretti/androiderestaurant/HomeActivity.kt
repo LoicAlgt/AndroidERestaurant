@@ -28,12 +28,12 @@ class HomeActivity : AppCompatActivity() {
         /*
         val action = findViewById<Button>(R.id.buttonEntrée_affichage)
         action.setOnClickListener() {
-            Toast.makeText(applicationContext, "Creeper, OH MAN!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(applicationContext, "Coucou", Toast.LENGTH_SHORT).show();
         }
         */
 
         //val action1= findViewById<Button>(R.id.buttonEntrée_affichage)
-        binding.buttonStarteraffichage.setOnClickListener {
+        binding.buttonentree.setOnClickListener {
 
             Log.d("TAG", "Home est delete")
 
@@ -43,14 +43,14 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-        binding.buttonPlataffichage.setOnClickListener {
+        binding.buttonplat.setOnClickListener {
             val intent= Intent(this@HomeActivity, CategoryActivity::class.java)
             intent.putExtra("samplename", "Plats")
             startActivity(intent)
         }
 
 
-        binding.buttonDessertaffichage.setOnClickListener {
+        binding.buttondessert.setOnClickListener {
             val intent= Intent(this@HomeActivity, CategoryActivity::class.java)
             intent.putExtra("samplename", "Desserts")
             startActivity(intent)
