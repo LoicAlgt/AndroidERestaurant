@@ -58,7 +58,10 @@ class DetailsActivity : AppCompatActivity() {
             }
         }
 
-        //Ajouter et supprimer un article
+
+
+
+        //Ajouter un bouton
         val prixproduit = item.prices
         val priceString = java.lang.StringBuilder()
         val priceunique = item.prices[0].price?.toDouble()
@@ -75,15 +78,32 @@ class DetailsActivity : AppCompatActivity() {
                 val number = somme * priceunique!!
                 binding.prixtot.text = number.toString()
             }
-            //ajouter dans le panier
-            val basket = mapOf("item1" to 1, "item2" to 2)
+        }
+
+        //ajouter dans le panier
+        binding.ajouterpanier.setOnClickListener {
+            binding.textView3.text =
+                Editable.Factory.getInstance().newEditable(somme.toString())
+
+            if (item.prices.isNotEmpty()) {
+                prixproduit.forEach { prix ->
+                    priceString.append(prix.price)
+                }
+                val number = somme * priceunique!!
+                binding.prixtot.text = number.toString()
+            }
+            val number = somme * priceunique!!
+            val basket = mapOf("Total du panier : " to number.toString() + "€")
             val basketJson = Gson().toJson(basket)
             val fileOutputStream = openFileOutput("basket.json", Context.MODE_PRIVATE)
             fileOutputStream.write(basketJson.toByteArray())
             fileOutputStream.close()
             val view = findViewById<View>(android.R.id.content)
-            Snackbar.make(view, "Les informations ont été ajoutées au panier", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, "Vous avez pris " + number.toString() + "€", Snackbar.LENGTH_SHORT)
+                .show()
         }
+
+        //Bouton moins
         val myTextView = findViewById<TextView>(R.id.prixtot)
         val text2 = myTextView.text.toString()
         binding.buttonmoins.setOnClickListener {
@@ -121,7 +141,7 @@ class DetailsActivity : AppCompatActivity() {
         val ingredients= item.ingredients
         val ingredientsString = java.lang.StringBuilder()
         ingredients.forEach{ ingredients -> ingredientsString.append(ingredients.nameFr)
-        ingredientsString.append("\n")
+        ingredientsString.append(",")
         }
     binding.ingredient.text = ingredientsString
     }
