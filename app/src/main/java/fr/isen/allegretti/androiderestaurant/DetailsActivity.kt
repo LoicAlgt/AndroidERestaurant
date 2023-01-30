@@ -58,18 +58,6 @@ class DetailsActivity : AppCompatActivity() {
             }
         }
 
-        //ajouter dans le panier
-        val myButton = findViewById<Button>(R.id.buttonplus)
-        myButton.setOnClickListener {
-            val basket = mapOf("item1" to 1, "item2" to 2)
-            val basketJson = Gson().toJson(basket)
-            val fileOutputStream = openFileOutput("basket.json", Context.MODE_PRIVATE)
-            fileOutputStream.write(basketJson.toByteArray())
-            fileOutputStream.close()
-            val view = findViewById<View>(android.R.id.content)
-            Snackbar.make(view, "Les informations ont été ajoutées au panier", Snackbar.LENGTH_SHORT).show()
-        }
-
         //Ajouter et supprimer un article
         val prixproduit = item.prices
         val priceString = java.lang.StringBuilder()
@@ -87,6 +75,14 @@ class DetailsActivity : AppCompatActivity() {
                 val number = somme * priceunique!!
                 binding.prixtot.text = number.toString()
             }
+            //ajouter dans le panier
+            val basket = mapOf("item1" to 1, "item2" to 2)
+            val basketJson = Gson().toJson(basket)
+            val fileOutputStream = openFileOutput("basket.json", Context.MODE_PRIVATE)
+            fileOutputStream.write(basketJson.toByteArray())
+            fileOutputStream.close()
+            val view = findViewById<View>(android.R.id.content)
+            Snackbar.make(view, "Les informations ont été ajoutées au panier", Snackbar.LENGTH_SHORT).show()
         }
         val myTextView = findViewById<TextView>(R.id.prixtot)
         val text2 = myTextView.text.toString()
